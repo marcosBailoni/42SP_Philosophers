@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 22:43:59 by marcos            #+#    #+#             */
-/*   Updated: 2026/03/22 22:09:05 by marcos           ###   ########.fr       */
+/*   Updated: 2026/03/23 05:58:06 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,8 @@ fork *create_forks(int number_of_philos)
 }
 
 
-void	fill_table(table *table, int *input)
+int	fill_table(table *table, int *input)
 {
-	int i;
-
 	table->number_of_philos = input[0];
 	table->time_to_die = input[1];
 	table->time_to_eat = input[2];
@@ -65,10 +63,18 @@ void	fill_table(table *table, int *input)
 	table->must_eat_count = input[4];
 	table->running = 1;
 	table->philos_finished = 0;
-	i = 0;
 	table->philosophers	= create_philosophers(table->number_of_philos, table);
+	if (!table->philosophers)
+		return (0);
 	table->forks = create_forks(table->number_of_philos);
+	if (!table->forks)
+	{
+		free(table->philosophers);
+		table->philosophers = NULL;
+		return (0);
+	}		
 	pthread_mutex_init(&table->running_lock, NULL);
 	pthread_mutex_init(&table->print_lock, NULL);
 	pthread_mutex_init(&table->finished_lock, NULL);
+	return (1);
 }
