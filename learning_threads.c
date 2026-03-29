@@ -18,7 +18,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-void *rotina(void *arg)
+void    *rotina(void *arg)
 {
     int id = *(int *)arg;
 

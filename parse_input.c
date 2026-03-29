@@ -6,12 +6,10 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 15:48:24 by marcos            #+#    #+#             */
-/*   Updated: 2026/03/21 22:56:19 by marcos           ###   ########.fr       */
+/*   Updated: 2026/03/28 17:19:21 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include <stdlib.h>
 #include "philosophers.h"
 
 int total_inputs(int argc)

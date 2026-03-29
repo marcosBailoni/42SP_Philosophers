@@ -6,11 +6,16 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 05:49:24 by marcos            #+#    #+#             */
-/*   Updated: 2026/03/23 05:48:19 by marcos           ###   ########.fr       */
+/*   Updated: 2026/03/29 15:30:15 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pthread.h>
+#include <stdlib.h>
+#include <sys/time.h>
+#include <stdio.h>
+#include "libft/libft.h"
+
 
 #ifndef PHILOSOPHERS_H
 #define PHILOSOPHERS_H
@@ -23,22 +28,22 @@ typedef struct table table;
 typedef struct fork
 {
 	int id;
-	int index;
 	pthread_mutex_t lock;
-} fork;
+} s_fork;
 
 typedef struct philosopher
 {
 	int id;
+	int index;
 	int count_meal;
 	long last_meal;
 	pthread_mutex_t meal_lock;
-	fork *left;
-	fork *right;
-	table *table;
+	s_fork *left;
+	s_fork *right;
+	s_table *table;
 	pthread_t thread;
-
-} philosopher;
+	
+} s_philosopher;
 
 typedef struct table
 {
@@ -50,8 +55,8 @@ typedef struct table
  	long time_to_sleep;
 	long start_time;
 
-	fork *forks;
-	philosopher *philosophers;
+	s_fork *forks;
+	s_philosopher *philosophers;
 
 	int running;
 	pthread_mutex_t running_lock;
@@ -60,8 +65,34 @@ typedef struct table
 	int philos_finished;
 	pthread_mutex_t finished_lock;
  	
-} table;
+} s_table;
 
+//functions
 
+//parse
+
+int total_inputs(int argc);
+int input_is_valid_number(int argc, char **argv);
+int all_input_is_valid_number(int argc, char **argv);
+int	*vect_input(int argc, char **argv);
+
+//table
+s_philosopher *create_philosophers(int number_of_philos, s_table *table);
+s_fork *create_forks(int number_of_philos);
+void	link_forks(s_fork *forks, s_philosopher *philosophers, int size);
+int	fill_table(s_table *table, int *input);
+
+//time
+long get_time_now();
+void fill_start_time(s_table *table);
+
+//print
+void	print_action(s_table *table, long time_stamp, int id, const char *message);
+
+//thread_routine
+void	*routine(void *arg);
+void	start_threads_philo(s_table *table);
+void	make_main_wait(s_table *table);
 
 #endif
+

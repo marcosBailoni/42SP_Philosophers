@@ -1,42 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Philosophers.c                                     :+:      :+:    :+:   */
+/*   print_control.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/19 06:23:20 by marcos            #+#    #+#             */
-/*   Updated: 2026/03/29 15:29:47 by marcos           ###   ########.fr       */
+/*   Created: 2026/03/28 18:02:34 by marcos            #+#    #+#             */
+/*   Updated: 2026/03/29 15:29:11 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int main (int argc, char **argv)
+void	print_action(s_table *table, long time_stamp, int id, const char *message)
 {
-	int *input;
-	s_table t;
-
-	if (!all_input_is_valid_number(argc, argv))
-	{
-		printf("Error: Invalid input\n");
-		return (1);
-	}
-	input = vect_input(argc, argv);
-	if (!input)
-		return (1);
-	if(!fill_table(&t, input))
-	{
-		free (input);
-		return (1);
-	}
-	free (input);
-
-	fill_start_time(&t);
-
-	start_threads_philo(&t);
-
-	make_main_wait(&t);
-	
-	return (0);
+	pthread_mutex_lock(&table->print_lock);
+	printf("%ld %d %s\n", time_stamp, id, message);
+	pthread_mutex_unlock(&table->print_lock);
 }

@@ -6,27 +6,27 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 22:43:59 by marcos            #+#    #+#             */
-/*   Updated: 2026/03/23 06:10:57 by marcos           ###   ########.fr       */
+/*   Updated: 2026/03/29 15:29:42 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-philosopher *create_philosophers(int number_of_philos, table *table)
+s_philosopher *create_philosophers(int number_of_philos, s_table *table)
 {
 	int i;
-	philosopher *philosophers;
+	s_philosopher *philosophers;
 
-	philosophers = malloc(sizeof(philosopher) * number_of_philos);
+	philosophers = malloc(sizeof(s_philosopher) * number_of_philos);
 	if (!philosophers)
 		return (NULL);
 	
 	i = 0;
 	while (i < number_of_philos)
 	{
+		philosophers[i].index = i;
 		philosophers[i].id = i + 1;
 		philosophers[i].count_meal = 0;
-		philosophers[i].last_meal = 0;
 		pthread_mutex_init(&philosophers[i].meal_lock, NULL);
 		philosophers[i].table = table;
 		i++;
@@ -34,27 +34,39 @@ philosopher *create_philosophers(int number_of_philos, table *table)
 	return (philosophers);
 }
 
-fork *create_forks(int number_of_philos)
+s_fork *create_forks(int number_of_philos)
 {
-	fork *forks;
+	s_fork *forks;
 	int i;
 
-	forks = malloc(sizeof(fork) * number_of_philos);
+	forks = malloc(sizeof(s_fork) * number_of_philos);
 	if (!forks)
 		return (NULL);
 	i = 0;
 	while (i < number_of_philos)
 	{
 		forks[i].id = i + 1;
-		forks[i].index = i;
 		pthread_mutex_init(&forks[i].lock, NULL);
 		i++;
 	}
 	return (forks);
 }
 
+void	link_forks(s_fork *forks, s_philosopher *philosophers, int size)
+{
+	int i;
 
-int	fill_table(table *table, int *input)
+	i = 0;
+	while (i < size)
+	{
+		philosophers[i].left = &forks[i];
+		philosophers[i].right =  &forks[(i + 1) % size];
+		i++;
+	}
+}
+
+
+int	fill_table(s_table *table, int *input)
 {
 	table->number_of_philos = input[0];
 	table->time_to_die = input[1];
@@ -76,5 +88,6 @@ int	fill_table(table *table, int *input)
 	pthread_mutex_init(&table->running_lock, NULL);
 	pthread_mutex_init(&table->print_lock, NULL);
 	pthread_mutex_init(&table->finished_lock, NULL);
+	link_forks(table->forks, table->philosophers, table->number_of_philos);
 	return (1);
 }
