@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 05:49:24 by marcos            #+#    #+#             */
-/*   Updated: 2026/03/29 15:30:15 by marcos           ###   ########.fr       */
+/*   Updated: 2026/04/01 06:29:13 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 //macro para argumentos do input
 
 
-typedef struct table table;
+typedef struct table s_table;
 
 typedef struct fork
 {
@@ -36,6 +36,7 @@ typedef struct philosopher
 	int id;
 	int index;
 	int count_meal;
+	int	complete_meals;
 	long last_meal;
 	pthread_mutex_t meal_lock;
 	s_fork *left;
@@ -90,9 +91,17 @@ void fill_start_time(s_table *table);
 void	print_action(s_table *table, long time_stamp, int id, const char *message);
 
 //thread_routine
+int	is_simulation_running(s_table *table);
 void	*routine(void *arg);
 void	start_threads_philo(s_table *table);
 void	make_main_wait(s_table *table);
+
+//eat sleep rave repeat
+void	philo_eat(s_philosopher *philo);
+void	philo_sleep(s_philosopher *philo);
+void	philo_think(s_philosopher *philo);
+
+pthread_t monitor;
 
 #endif
 

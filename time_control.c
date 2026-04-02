@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 17:14:32 by marcos            #+#    #+#             */
-/*   Updated: 2026/03/28 17:35:41 by marcos           ###   ########.fr       */
+/*   Updated: 2026/03/29 17:43:07 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ long get_time_now()
 	return (time);
 }
 
-void fill_start_time(table *table)
+void fill_start_time(s_table *table)
 {
 	int i;
 	long time;
