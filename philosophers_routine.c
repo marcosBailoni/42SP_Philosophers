@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 17:59:12 by marcos            #+#    #+#             */
-/*   Updated: 2026/03/30 19:54:54 by marcos           ###   ########.fr       */
+/*   Updated: 2026/04/05 02:10:48 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,6 @@ void	make_main_wait(s_table *table)
 		pthread_join(table->philosophers[i].thread, NULL);
 		i++;
 	}
+	pthread_join(table->monitor, NULL);
+	
 }

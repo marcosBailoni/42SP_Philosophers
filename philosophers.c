@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 06:23:20 by marcos            #+#    #+#             */
-/*   Updated: 2026/03/30 20:17:15 by marcos           ###   ########.fr       */
+/*   Updated: 2026/04/05 02:09:34 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int main (int argc, char **argv)
 	fill_start_time(&t);
 
 	start_threads_philo(&t);
+
+	start_monitor(&t);
 
 	make_main_wait(&t);
 	

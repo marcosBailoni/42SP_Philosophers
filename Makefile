@@ -9,7 +9,8 @@ SRCS = parse_input.c \
 	print_control.c \
 	philosophers_routine.c \
 	eat_sleep_rave_repeat.c \
-	philosophers.c
+	monitoring.c \
+	philosophers.c	
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 05:49:24 by marcos            #+#    #+#             */
-/*   Updated: 2026/04/01 06:29:13 by marcos           ###   ########.fr       */
+/*   Updated: 2026/04/05 02:12:17 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ typedef struct table
 
 	int philos_finished;
 	pthread_mutex_t finished_lock;
+
+	pthread_t monitor;
  	
 } s_table;
 
@@ -101,7 +103,9 @@ void	philo_eat(s_philosopher *philo);
 void	philo_sleep(s_philosopher *philo);
 void	philo_think(s_philosopher *philo);
 
-pthread_t monitor;
+//monitor
+void	*monitoring(void *arg);
+void	start_monitor(s_table *table);
 
 #endif
 
