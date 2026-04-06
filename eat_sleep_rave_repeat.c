@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   eat_sleep_rave_repeat.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maralves <maralves@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 19:38:25 by marcos            #+#    #+#             */
-/*   Updated: 2026/04/06 00:36:47 by marcos           ###   ########.fr       */
+/*   Updated: 2026/04/06 20:23:16 by maralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
 
 void	philo_eat(s_philosopher *philo)
 {
@@ -21,8 +20,8 @@ void	philo_eat(s_philosopher *philo)
 		print_action(philo->table, get_time_now() - philo->table->start_time, philo->id, "has taken a fork");
 		pthread_mutex_lock(&philo->right->lock);
 		print_action(philo->table, get_time_now() - philo->table->start_time, philo->id, "has taken a fork");
-	
-	} else
+	}
+	else
 	{
 		pthread_mutex_lock(&philo->right->lock);
 		print_action(philo->table, get_time_now() - philo->table->start_time, philo->id, "has taken a fork");
@@ -36,7 +35,7 @@ void	philo_eat(s_philosopher *philo)
 	print_action(philo->table, get_time_now() - philo->table->start_time, philo->id, "is eating");
 	usleep(philo->table->time_to_eat * 1000);
 	pthread_mutex_unlock(&philo->left->lock);
-	pthread_mutex_unlock(&philo->right->lock);	
+	pthread_mutex_unlock(&philo->right->lock);
 }
 
 void	philo_sleep(s_philosopher *philo)

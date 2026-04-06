@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitoring.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maralves <maralves@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 20:31:27 by marcos            #+#    #+#             */
-/*   Updated: 2026/04/06 00:36:49 by marcos           ###   ########.fr       */
+/*   Updated: 2026/04/06 20:55:48 by maralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 void	*monitoring(void *arg)
 {
-	int i;
-	int philos_satisfied;
-	s_table *table;
+	int		i;
+	int		philos_satisfied;
+	s_table	*table;
 
 	i = 0;
 	philos_satisfied = 0;
 	table = (s_table *) arg;
-
 	while (1)
 	{
 		i = 0;
@@ -32,10 +31,10 @@ void	*monitoring(void *arg)
 			{
 				pthread_mutex_lock(&table->running_lock);
 				table->running = 0;
-				pthread_mutex_unlock(&table->running_lock);					
-				pthread_mutex_lock(&table->print_lock);					
+				pthread_mutex_unlock(&table->running_lock);
+				pthread_mutex_lock(&table->print_lock);
 				printf("%ld %d died\n", get_time_now() - table->start_time, table->philosophers[i].id);
-				pthread_mutex_unlock(&table->print_lock);					
+				pthread_mutex_unlock(&table->print_lock);
 				pthread_mutex_unlock(&table->philosophers[i].meal_lock);
 				return (NULL);
 			}
@@ -53,16 +52,15 @@ void	*monitoring(void *arg)
 			{
 				pthread_mutex_lock(&table->running_lock);
 				table->running = 0;
-				pthread_mutex_lock(&table->print_lock);					
+				pthread_mutex_lock(&table->print_lock);
 				printf("all ate\n");
 				pthread_mutex_unlock(&table->print_lock);
 				pthread_mutex_unlock(&table->running_lock);
 				return (NULL);
 			}
-			
 			i++;
 		}
-		usleep (1000);
+		usleep (100);
 	}
 	return (NULL);
 }
@@ -71,5 +69,3 @@ void	start_monitor(s_table *table)
 {
 	pthread_create(&table->monitor, NULL, monitoring, table);
 }
-
-

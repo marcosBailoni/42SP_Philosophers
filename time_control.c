@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   time_control.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maralves <maralves@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 17:14:32 by marcos            #+#    #+#             */
-/*   Updated: 2026/04/06 00:36:54 by marcos           ###   ########.fr       */
+/*   Updated: 2026/04/06 20:39:44 by maralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-long get_time_now()
+long	get_time_now(void)
 {
-	struct timeval tv;
-	long time;
+	struct timeval	tv;
+	long			time;
 
 	gettimeofday(&tv, NULL);
 	time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 	return (time);
 }
 
-void fill_start_time(s_table *table)
+void	fill_start_time(s_table *table)
 {
-	int i;
-	long time;
+	int		i;
+	long	time;
 
 	time = get_time_now();
 	table->start_time = time;

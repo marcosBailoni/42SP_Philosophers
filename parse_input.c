@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: maralves <maralves@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 15:48:24 by marcos            #+#    #+#             */
-/*   Updated: 2026/04/06 00:36:50 by marcos           ###   ########.fr       */
+/*   Updated: 2026/04/06 20:30:57 by maralves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int total_inputs(int argc)
+int	total_inputs(int argc)
 {
 	if (argc == 5 || argc == 6)
 		return (1);
 	return (0);
 }
 
-int input_is_valid_number(int argc, char **argv)
+int	input_is_valid_number(int argc, char **argv)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
-	i = 1;	
+	i = 1;
 	while (i < argc)
 	{
 		j = 0;
@@ -49,21 +49,20 @@ int input_is_valid_number(int argc, char **argv)
 
 int	is_all_int(int argc, char **argv)
 {
-	int i;
+	int	i;
 
 	i = 1;
-
 	while (i < argc)
 	{
-		if(ft_atoll(argv[i]) > 2147483647 
-		|| ft_atoll(argv[i]) <= 0)
+		if (ft_atoll(argv[i]) > 2147483647
+			|| ft_atoll(argv[i]) <= 0)
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int all_input_is_valid_number(int argc, char **argv)
+int	all_input_is_valid_number(int argc, char **argv)
 {
 	if (!total_inputs(argc))
 	{
@@ -73,7 +72,7 @@ int all_input_is_valid_number(int argc, char **argv)
 	if (!input_is_valid_number(argc, argv))
 	{
 		printf("Error: Invalid input\n");
-		return (0);	
+		return (0);
 	}
 	if (!is_all_int(argc, argv))
 	{
@@ -83,12 +82,10 @@ int all_input_is_valid_number(int argc, char **argv)
 	return (1);
 }
 
-
-
 int	*vect_input(int argc, char **argv)
 {
-	int *input;
-	int i;
+	int	*input;
+	int	i;
 
 	i = 0;
 	input = malloc(sizeof(int) * 5);
@@ -113,8 +110,6 @@ int	*vect_input(int argc, char **argv)
 	}
 	return (input);
 }
-
-
 
 // ./philo 
 // 		number_of_philos 
