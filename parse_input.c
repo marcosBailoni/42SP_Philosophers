@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 15:48:24 by marcos            #+#    #+#             */
-/*   Updated: 2026/03/28 17:19:21 by marcos           ###   ########.fr       */
+/*   Updated: 2026/04/06 00:36:50 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,43 @@ int input_is_valid_number(int argc, char **argv)
 	return (1);
 }
 
+int	is_all_int(int argc, char **argv)
+{
+	int i;
+
+	i = 1;
+
+	while (i < argc)
+	{
+		if(ft_atoll(argv[i]) > 2147483647 
+		|| ft_atoll(argv[i]) <= 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int all_input_is_valid_number(int argc, char **argv)
 {
 	if (!total_inputs(argc))
+	{
+		printf("Error: Invalid input\n");
 		return (0);
+	}
 	if (!input_is_valid_number(argc, argv))
+	{
+		printf("Error: Invalid input\n");
 		return (0);	
+	}
+	if (!is_all_int(argc, argv))
+	{
+		printf("Error: Invalid input\n");
+		return (0);
+	}
 	return (1);
 }
+
+
 
 int	*vect_input(int argc, char **argv)
 {
@@ -65,12 +94,12 @@ int	*vect_input(int argc, char **argv)
 	input = malloc(sizeof(int) * 5);
 	if (!input)
 		return (NULL);
-	input[0] = ft_atoi(argv[1]);
-	input[1] = ft_atoi(argv[2]);
-	input[2] = ft_atoi(argv[3]);
-	input[3] = ft_atoi(argv[4]);
+	input[0] = (int)ft_atoll(argv[1]);
+	input[1] = (int)ft_atoll(argv[2]);
+	input[2] = (int)ft_atoll(argv[3]);
+	input[3] = (int)ft_atoll(argv[4]);
 	if (argc == 6)
-		input[4] = ft_atoi(argv[5]);
+		input[4] = (int)ft_atoll(argv[5]);
 	else
 		input[4] = -1;
 	while (i < 4)

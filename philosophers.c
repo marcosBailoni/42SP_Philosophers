@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 06:23:20 by marcos            #+#    #+#             */
-/*   Updated: 2026/04/05 02:09:34 by marcos           ###   ########.fr       */
+/*   Updated: 2026/04/06 00:36:51 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ int main (int argc, char **argv)
 	s_table t;
 
 	if (!all_input_is_valid_number(argc, argv))
-	{
-		printf("Error: Invalid input\n");
 		return (1);
-	}
 	input = vect_input(argc, argv);
 	if (!input)
 		return (1);

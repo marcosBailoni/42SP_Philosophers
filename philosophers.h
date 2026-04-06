@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/18 05:49:24 by marcos            #+#    #+#             */
-/*   Updated: 2026/04/05 02:12:17 by marcos           ###   ########.fr       */
+/*   Updated: 2026/04/06 00:36:51 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include <stdlib.h>
 #include <sys/time.h>
 #include <stdio.h>
-#include "libft/libft.h"
+#include <unistd.h>
+// #include "libft/libft.h"
 
 
 #ifndef PHILOSOPHERS_H
@@ -106,6 +107,10 @@ void	philo_think(s_philosopher *philo);
 //monitor
 void	*monitoring(void *arg);
 void	start_monitor(s_table *table);
+
+//aux
+int	ft_isdigit(int c);
+long long	ft_atoll(const char *nptr);
 
 #endif
 

@@ -6,11 +6,12 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 19:38:25 by marcos            #+#    #+#             */
-/*   Updated: 2026/03/29 21:48:46 by marcos           ###   ########.fr       */
+/*   Updated: 2026/04/06 00:36:47 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
 
 void	philo_eat(s_philosopher *philo)
 {
