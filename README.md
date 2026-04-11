@@ -70,15 +70,20 @@ With must_eat
 valgrind ./philosophers 5 800 200 200 5
 ```
 
-🧠 Key Concepts
-Threads (pthread)
-Mutexes (mutual exclusion)
-Race conditions
-Deadlock prevention
-Time-sensitive monitoring
-Resource sharing
+## 🧠 Key Concepts
 
-🏗️ Project Structure
+- Threads (pthread)
+- Mutexes (mutual exclusion)
+- Race conditions
+- Deadlock prevention
+- Time-sensitive monitoring
+- Resource sharing
+
+---
+
+## 🏗️ Project Structure
+
+
 .
 ├── philosophers.c
 ├── monitoring.c
@@ -92,26 +97,35 @@ Resource sharing
 ├── philosophers.h
 └── Makefile
 
-⚡ Features
-Thread-safe simulation
-Precise death monitoring (≤ 10ms constraint)
-Clean shutdown of all threads
-Proper memory management (no leaks)
-Handles edge cases (like 1 philosopher)
 
-📚 Resources
-📖 Documentation & References
-The Dining Philosophers Problem (Wikipedia)
-POSIX Threads Programming
-Mutex explanation
+---
 
+## ⚡ Features
 
-✅ Final Notes
+- Thread-safe simulation
+- Precise death monitoring (≤ 10ms constraint)
+- Clean shutdown of all threads
+- Proper memory management (no leaks)
+- Handles edge cases (like 1 philosopher)
+
+---
+
+## 📚 Resources
+
+### 📖 Documentation & References
+
+- The Dining Philosophers Problem (Wikipedia)
+- POSIX Threads Programming
+- Mutex explanation
+
+---
+
+## ✅ Final Notes
 
 This project is a deep dive into multithreading and synchronization, requiring careful handling of shared data and timing.
 
 Small mistakes can lead to:
 
-race conditions
-deadlocks
-incorrect outputs
+- race conditions  
+- deadlocks  
+- incorrect outputs  
