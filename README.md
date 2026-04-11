@@ -56,7 +56,7 @@ Edge case (1 philosopher)
 🔍 Testing with Valgrind
 
 Memory leak check
-valgrind ./philosophers 5 800 200 200
+valgrind ./philosophers 5 500 200 200
 
 With must_eat
 valgrind ./philosophers 5 800 200 200 5
@@ -96,7 +96,7 @@ The Dining Philosophers Problem (Wikipedia)
 POSIX Threads Programming
 Mutex explanation
 
-
+```bash
 ✅ Final Notes
 
 This project is a deep dive into multithreading and synchronization, requiring careful handling of shared data and timing.
