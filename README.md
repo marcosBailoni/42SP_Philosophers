@@ -26,12 +26,13 @@ The simulation stops when:
 ## ⚙️ Instructions
 
 ### 🛠 Compilation
-
 ```bash
 make
+```
 ▶️ Execution
+```bash
 ./philosophers number_of_philos time_to_die time_to_eat time_to_sleep [must_eat]
-
+```
 
 📥 Arguments
 Argument	Description
@@ -96,7 +97,7 @@ The Dining Philosophers Problem (Wikipedia)
 POSIX Threads Programming
 Mutex explanation
 
-```bash
+
 ✅ Final Notes
 
 This project is a deep dive into multithreading and synchronization, requiring careful handling of shared data and timing.
