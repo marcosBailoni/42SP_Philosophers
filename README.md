@@ -114,7 +114,7 @@ valgrind ./philosophers 5 800 200 200 5
 
 ### 📖 Documentation & References
 
-- The Dining Philosophers Problem (Wikipedia)
+- The Dining Philosophers Problem
 - POSIX Threads Programming
 - Mutex explanation
 
