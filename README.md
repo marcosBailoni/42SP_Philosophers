@@ -83,7 +83,7 @@ valgrind ./philosophers 5 800 200 200 5
 
 ## 🏗️ Project Structure
 
-
+```
 .
 ├── philosophers.c
 ├── monitoring.c
@@ -96,7 +96,7 @@ valgrind ./philosophers 5 800 200 200 5
 ├── aux_functions.c
 ├── philosophers.h
 └── Makefile
-
+```
 
 ---
 
