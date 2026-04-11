@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   table_control.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maralves <maralves@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/21 22:43:59 by marcos            #+#    #+#             */
-/*   Updated: 2026/04/06 20:44:38 by maralves         ###   ########.fr       */
+/*   Updated: 2026/04/11 19:55:15 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-s_philosopher	*create_philosophers(int number_of_philos, s_table *table)
+t_philosopher	*create_philosophers(int number_of_philos, t_table *table)
 {
 	int				i;
-	s_philosopher	*philosophers;
+	t_philosopher	*philosophers;
 
-	philosophers = malloc(sizeof(s_philosopher) * number_of_philos);
+	philosophers = malloc(sizeof(t_philosopher) * number_of_philos);
 	if (!philosophers)
 		return (NULL);
 	i = 0;
@@ -26,6 +26,7 @@ s_philosopher	*create_philosophers(int number_of_philos, s_table *table)
 		philosophers[i].index = i;
 		philosophers[i].id = i + 1;
 		philosophers[i].count_meal = 0;
+		philosophers[i].complete_meals = 0;
 		pthread_mutex_init(&philosophers[i].meal_lock, NULL);
 		philosophers[i].table = table;
 		i++;
@@ -33,12 +34,12 @@ s_philosopher	*create_philosophers(int number_of_philos, s_table *table)
 	return (philosophers);
 }
 
-s_fork	*create_forks(int number_of_philos)
+t_fork	*create_forks(int number_of_philos)
 {
-	s_fork	*forks;
+	t_fork	*forks;
 	int		i;
 
-	forks = malloc(sizeof(s_fork) * number_of_philos);
+	forks = malloc(sizeof(t_fork) * number_of_philos);
 	if (!forks)
 		return (NULL);
 	i = 0;
@@ -51,7 +52,7 @@ s_fork	*create_forks(int number_of_philos)
 	return (forks);
 }
 
-void	link_forks(s_fork *forks, s_philosopher *philosophers, int size)
+void	link_forks(t_fork *forks, t_philosopher *philosophers, int size)
 {
 	int	i;
 
@@ -64,7 +65,7 @@ void	link_forks(s_fork *forks, s_philosopher *philosophers, int size)
 	}
 }
 
-int	fill_table(s_table *table, int *input)
+int	fill_table(t_table *table, int *input)
 {
 	table->number_of_philos = input[0];
 	table->time_to_die = input[1];
@@ -82,7 +83,7 @@ int	fill_table(s_table *table, int *input)
 		free(table->philosophers);
 		table->philosophers = NULL;
 		return (0);
-	}		
+	}
 	pthread_mutex_init(&table->running_lock, NULL);
 	pthread_mutex_init(&table->print_lock, NULL);
 	pthread_mutex_init(&table->finished_lock, NULL);
@@ -90,7 +91,7 @@ int	fill_table(s_table *table, int *input)
 	return (1);
 }
 
-void	free_table(s_table *table)
+void	free_table(t_table *table)
 {
 	int	i;
 

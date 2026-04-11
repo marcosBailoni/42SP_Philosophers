@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers_routine.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maralves <maralves@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 17:59:12 by marcos            #+#    #+#             */
-/*   Updated: 2026/04/06 20:47:10 by maralves         ###   ########.fr       */
+/*   Updated: 2026/04/11 19:37:39 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	is_simulation_running(s_table *table)
+int	is_simulation_running(t_table *table)
 {
 	int	result;
 
@@ -24,9 +24,9 @@ int	is_simulation_running(s_table *table)
 
 void	*routine(void *arg)
 {
-	s_philosopher	*philo;
+	t_philosopher	*philo;
 
-	philo = (s_philosopher *)arg;
+	philo = (t_philosopher *)arg;
 	while (1)
 	{
 		if (!is_simulation_running(philo->table))
@@ -42,19 +42,20 @@ void	*routine(void *arg)
 	return (NULL);
 }
 
-void	start_threads_philo(s_table *table)
+void	start_threads_philo(t_table *table)
 {
 	int	i;
 
 	i = 0;
 	while (i < table->number_of_philos)
 	{
-		pthread_create(&table->philosophers[i].thread, NULL, routine, &table->philosophers[i]);
+		pthread_create(&table->philosophers[i].thread,
+			NULL, routine, &table->philosophers[i]);
 		i++;
 	}
 }
 
-void	make_main_wait(s_table *table)
+void	make_main_wait(t_table *table)
 {
 	int	i;
 
@@ -67,7 +68,7 @@ void	make_main_wait(s_table *table)
 	pthread_join(table->monitor, NULL);
 }
 
-int	one_philo(s_table *t)
+int	one_philo(t_table *t)
 {
 	if (t->number_of_philos == 1)
 	{

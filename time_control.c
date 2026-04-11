@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time_control.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maralves <maralves@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 17:14:32 by marcos            #+#    #+#             */
-/*   Updated: 2026/04/06 20:39:44 by maralves         ###   ########.fr       */
+/*   Updated: 2026/04/11 19:23:17 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ long	get_time_now(void)
 	return (time);
 }
 
-void	fill_start_time(s_table *table)
+void	fill_start_time(t_table *table)
 {
 	int		i;
 	long	time;

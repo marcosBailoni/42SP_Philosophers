@@ -6,13 +6,14 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/28 18:02:34 by marcos            #+#    #+#             */
-/*   Updated: 2026/04/06 00:36:51 by marcos           ###   ########.fr       */
+/*   Updated: 2026/04/11 19:23:17 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	print_action(s_table *table, long time_stamp, int id, const char *message)
+void	print_action(t_table *table, long time_stamp,
+	int id, const char *message)
 {
 	pthread_mutex_lock(&table->running_lock);
 	if (table->running)
