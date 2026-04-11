@@ -35,7 +35,7 @@ make
 ```
 
 📥 Arguments
-Argument	Description
+
 number_of_philos	Number of philosophers (and forks)
 time_to_die	Time (ms) before a philosopher dies without eating
 time_to_eat	Time (ms) spent eating
@@ -46,21 +46,29 @@ must_eat (optional)	Number of times each philosopher must eat
 🧪 Examples
 
 Basic test
+```bash
 ./philosophers 5 800 200 200
-
+```
 With must_eat condition
+```bash
 ./philosophers 5 800 200 200 5
-
+```
 Edge case (1 philosopher)
+```bash
 ./philosophers 1 800 200 200
+```
 
 🔍 Testing with Valgrind
 
 Memory leak check
+```bash
 valgrind ./philosophers 5 500 200 200
+```
 
 With must_eat
+```bash
 valgrind ./philosophers 5 800 200 200 5
+```
 
 🧠 Key Concepts
 Threads (pthread)
